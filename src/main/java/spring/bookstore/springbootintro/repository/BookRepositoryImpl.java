@@ -1,13 +1,13 @@
 package spring.bookstore.springbootintro.repository;
 
 import jakarta.persistence.criteria.CriteriaQuery;
-import spring.bookstore.springbootintro.model.Book;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import java.util.List;
+import spring.bookstore.springbootintro.model.Book;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
@@ -28,12 +28,12 @@ public class BookRepositoryImpl implements BookRepository {
             session.persist(book);
             transaction.commit();
             return book;
-        }  catch (Exception e) {
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             throw new RuntimeException("Can't save book to DB: " + book, e);
-        }  finally {
+        } finally {
             if (session != null) {
                 session.close();
             }
@@ -43,11 +43,11 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public List<Book> findAll() {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaQuery<Book>  criteriaQuery = session.getCriteriaBuilder()
+            CriteriaQuery<Book> criteriaQuery = session.getCriteriaBuilder()
                     .createQuery(Book.class);
             criteriaQuery.from(Book.class);
             return session.createQuery(criteriaQuery).getResultList();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Can't return list of all Books", e);
         }
     }

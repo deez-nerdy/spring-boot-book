@@ -1,10 +1,10 @@
 package spring.bookstore.springbootintro.service;
 
-import spring.bookstore.springbootintro.model.Book;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.bookstore.springbootintro.model.Book;
 import spring.bookstore.springbootintro.repository.BookRepository;
-import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
