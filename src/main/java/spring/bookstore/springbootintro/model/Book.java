@@ -1,28 +1,32 @@
 package spring.bookstore.springbootintro.model;
 
-import jakarta.annotation.Nullable;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.math.BigDecimal;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Nullable
+    @Nonnull
     private String title;
-    @Nullable
+    @Nonnull
     private String author;
-    @Nullable
+    @Nonnull
     @Column(unique = true)
     private String isbn;
-    @Nullable
+    @Nonnull
     private BigDecimal price;
     private String description;
     private String coverImage;
