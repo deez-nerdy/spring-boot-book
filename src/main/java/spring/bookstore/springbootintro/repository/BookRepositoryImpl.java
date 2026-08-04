@@ -1,22 +1,19 @@
 package spring.bookstore.springbootintro.repository;
 
-import jakarta.persistence.criteria.CriteriaQuery;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import spring.bookstore.springbootintro.exception.DataProcessingException;
 import spring.bookstore.springbootintro.model.Book;
 
 @Repository
+@RequiredArgsConstructor
 public class BookRepositoryImpl implements BookRepository {
     private final SessionFactory sessionFactory;
-
-    @Autowired
-    public BookRepositoryImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public Book save(Book book) {
@@ -32,7 +29,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save book to DB: " + book, e);
+            throw new DataProcessingException("Can't save book to DB: " + book, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -43,12 +40,10 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public List<Book> findAll() {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaQuery<Book> criteriaQuery = session.getCriteriaBuilder()
-                    .createQuery(Book.class);
-            criteriaQuery.from(Book.class);
-            return session.createQuery(criteriaQuery).getResultList();
+            Query<Book> query = session.createQuery("FROM Book", Book.class);
+            return query.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't return list of all Books", e);
+            throw new DataProcessingException("Can't return list of all Books", e);
         }
     }
 }
