@@ -34,9 +34,9 @@ public class SpringBootIntroApplication {
             book.setPrice(BOOK_PRICE);
             book.setDescription(BOOK_DESCRIPTION);
 
-            bookService.save(book);
+            //bookService.save(book);
 
-            System.out.println(bookService.findAll());
+            //System.out.println(bookService.getAll());
         };
     }
 }
