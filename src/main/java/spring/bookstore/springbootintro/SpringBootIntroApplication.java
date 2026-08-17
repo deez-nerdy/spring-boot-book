@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import spring.bookstore.springbootintro.model.Book;
+import spring.bookstore.springbootintro.dto.CreateBookRequestDto;
 import spring.bookstore.springbootintro.service.BookService;
 
 @SpringBootApplication
@@ -27,16 +27,16 @@ public class SpringBootIntroApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            Book book = new Book();
-            book.setTitle(BOOK_TITLE);
-            book.setAuthor(BOOK_AUTHOR);
-            book.setIsbn(BOOK_ISBN);
-            book.setPrice(BOOK_PRICE);
-            book.setDescription(BOOK_DESCRIPTION);
+            CreateBookRequestDto bookDto = new CreateBookRequestDto();
+            bookDto.setTitle(BOOK_TITLE);
+            bookDto.setAuthor(BOOK_AUTHOR);
+            bookDto.setIsbn(BOOK_ISBN);
+            bookDto.setPrice(BOOK_PRICE);
+            bookDto.setDescription(BOOK_DESCRIPTION);
 
-            bookService.save(book);
+            bookService.save(bookDto);
 
-            System.out.println(bookService.findAll());
+            System.out.println(bookService.getAll());
         };
     }
 }
