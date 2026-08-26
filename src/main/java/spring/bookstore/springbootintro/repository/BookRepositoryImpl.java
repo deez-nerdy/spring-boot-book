@@ -2,21 +2,20 @@ package spring.bookstore.springbootintro.repository;
 
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.stereotype.Repository;
 import spring.bookstore.springbootintro.exception.DataProcessingException;
 import spring.bookstore.springbootintro.model.Book;
 
-@Repository
-@RequiredArgsConstructor
-public class BookRepositoryImpl implements BookRepository {
+public class BookRepositoryImpl {
     private final SessionFactory sessionFactory;
 
-    @Override
+    public BookRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     public Book save(Book book) {
         Session session = null;
         Transaction transaction = null;
@@ -38,7 +37,6 @@ public class BookRepositoryImpl implements BookRepository {
         }
     }
 
-    @Override
     public Optional<Book> getById(Long id) {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.find(Book.class, id));
@@ -47,7 +45,6 @@ public class BookRepositoryImpl implements BookRepository {
         }
     }
 
-    @Override
     public List<Book> getAll() {
         try (Session session = sessionFactory.openSession()) {
             Query<Book> query = session.createQuery("FROM Book", Book.class);
