@@ -1,13 +1,9 @@
 package spring.bookstore.springbootintro.repository;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import spring.bookstore.springbootintro.model.Book;
 
-public interface BookRepository {
-    Book save(Book book);
-
-    Optional<Book> getById(Long id);
-
-    List<Book> getAll();
+@Repository
+public interface BookRepository extends JpaRepository<Book, Long> {
 }
