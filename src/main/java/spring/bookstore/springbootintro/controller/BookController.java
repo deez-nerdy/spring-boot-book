@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import spring.bookstore.springbootintro.dto.BookDto;
+import spring.bookstore.springbootintro.dto.BookSearchParameters;
 import spring.bookstore.springbootintro.dto.CreateBookRequestDto;
 import spring.bookstore.springbootintro.service.BookService;
 
@@ -36,6 +37,11 @@ public class BookController {
     @GetMapping
     public List<BookDto> getAll() {
         return bookService.getAll();
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> search(BookSearchParameters bookSearchParameters) {
+        return bookService.searchBooks(bookSearchParameters);
     }
 
     @DeleteMapping("/{id}")
