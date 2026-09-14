@@ -8,13 +8,15 @@ import spring.bookstore.springbootintro.repository.SpecificationProvider;
 
 @Component
 public class AuthorSpecificationProvider implements SpecificationProvider<Book> {
+    private static final String AUTHOR_KEY = "author";
+
     @Override
     public String getKey() {
-        return "author";
+        return AUTHOR_KEY;
     }
 
     public Specification<Book> getSpecification(String[] params) {
         return (root, query, criteriaBuilder)
-                -> root.get("author").in(Arrays.stream(params).toArray());
+                -> root.get(AUTHOR_KEY).in(Arrays.stream(params).toArray());
     }
 }
