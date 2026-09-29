@@ -8,7 +8,7 @@ import spring.bookstore.springbootintro.config.validation.ValidPriceRange;
 public record BookSearchParameters(String title,
                                    String author,
                                    String isbn,
-                                   @PositiveOrZero(message = "prise must be >= 0")
+                                   @PositiveOrZero(message = "must be >= 0")
                                    BigDecimal minPrice,
-                                   @PositiveOrZero(message = "prise must be >= 0")
+                                   @PositiveOrZero(message = "must be >= 0")
                                    BigDecimal maxPrice) {}

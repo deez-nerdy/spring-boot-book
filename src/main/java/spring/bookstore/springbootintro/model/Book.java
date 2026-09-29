@@ -6,9 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,20 +23,15 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "title is required")
     @Column(nullable = false)
     private String title;
 
-    @NotBlank(message = "author is required")
     @Column(nullable = false)
     private String author;
 
-    @NotBlank(message = "ISBN is required")
     @Column(unique = true, nullable = false)
     private String isbn;
 
-    @NotNull(message = "price is required")
-    @Positive(message = "prise must be greater than 0")
     @Column(nullable = false)
     private BigDecimal price;
 
