@@ -23,7 +23,7 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final BookSpecificationBuilder bookSpecificationBuilder;
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     @Override
     public BookDto save(CreateBookRequestDto requestBookDto) {
         Book book = bookMapper.toModel(requestBookDto);
@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService {
                 .map(bookMapper::toBookDto);
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     @Override
     public BookDto updateBookById(Long id, CreateBookRequestDto requestBookDto) {
         Book book = bookRepository.findById(id)
@@ -56,7 +56,7 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toBookDto(savedBook);
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     @Override
     public void deleteBookById(Long id) {
         bookRepository.deleteById(id);
