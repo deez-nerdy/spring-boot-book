@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import spring.bookstore.springbootintro.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String username);
+
+    boolean existsByEmail(String email);
 }

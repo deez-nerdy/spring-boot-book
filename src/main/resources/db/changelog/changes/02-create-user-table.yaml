@@ -1,4 +1,4 @@
-dataBaseChangeLog:
+databaseChangeLog:
   - changeSet:
       id: create-user-table
       author: kravtsov nikita
@@ -18,23 +18,22 @@ dataBaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: password
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: firstName
+                  name: first_Name
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: lastName
+                  name: last_Name
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: shippingAddress
+                  name: shipping_address
                   type: varchar(255)
-                  constraints:
-                    nullable: false

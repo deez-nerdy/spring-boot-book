@@ -2,7 +2,6 @@ package spring.bookstore.springbootintro.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -27,11 +26,11 @@ public class UserRegistrationRequestDto {
     @Length(min = 8, max = 20)
     private String repeatPassword;
 
-    @NotEmpty
+    @NotBlank
     @Length(max = 20)
     private String firstName;
 
-    @NotEmpty
+    @NotBlank
     @Length(max = 20)
     private String lastName;
 
