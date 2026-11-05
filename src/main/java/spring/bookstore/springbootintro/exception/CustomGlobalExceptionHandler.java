@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class CustomGlobalExceptionHandler {
     private static final int HTTP_STATUS_BAD_REQUEST = 400;
     private static final int HTTP_STATUS_NOT_FOUND = 404;
+    private static final int HTTP_STATUS_CONFLICT = 409;
     private static final int HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -54,6 +55,13 @@ public class CustomGlobalExceptionHandler {
         ErrorResponse response
                 = new ErrorResponse(ex.getMessage(), HTTP_STATUS_INTERNAL_SERVER_ERROR);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    @ExceptionHandler(RegistrationException.class)
+    public ResponseEntity<ErrorResponse> handleRegistrationException(
+            RegistrationException ex) {
+        ErrorResponse response = new ErrorResponse(ex.getMessage(), HTTP_STATUS_CONFLICT);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
     private String getErrorsMessage(ObjectError e) {

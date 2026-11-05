@@ -1,4 +1,4 @@
-package spring.bookstore.springbootintro.dto;
+package spring.bookstore.springbootintro.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

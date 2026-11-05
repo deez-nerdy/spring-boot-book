@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import spring.bookstore.springbootintro.dto.BookDto;
 import spring.bookstore.springbootintro.dto.BookSearchParameters;
-import spring.bookstore.springbootintro.dto.CreateBookRequestDto;
-import spring.bookstore.springbootintro.service.BookService;
+import spring.bookstore.springbootintro.dto.request.CreateBookRequestDto;
+import spring.bookstore.springbootintro.dto.response.BookDto;
+import spring.bookstore.springbootintro.service.book.BookService;
 
 @Tag(name = "Books management", description = "Endpoints for managing books")
 @RequiredArgsConstructor
