@@ -1,6 +1,5 @@
 package spring.bookstore.springbootintro.service.user;
 
-import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,11 +37,8 @@ public class UserServiceImpl implements UserService {
                 passwordEncoder.encode(userRegistrationRequestDto.getPassword())
         );
 
-        Set<Role> roles = new HashSet<>();
-
         Role userRole = roleRepository.getRoleByRoleName(RoleName.USER);
-        roles.add(userRole);
-        user.setRoles(roles);
+        user.setRoles(Set.of(userRole));
 
         User savedUser = userRepository.save(user);
         return userMapper.toUserResponse(savedUser);
