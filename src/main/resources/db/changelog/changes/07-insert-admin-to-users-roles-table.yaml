@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-admin-to-users-roles-table
+      author: kravtsov-nikita
+      changes:
+        - sql:
+            sql: >
+              INSERT INTO users_roles (user_id, role_id)
+              SELECT u.id, r.id
+              FROM users u
+              CROSS JOIN roles r
+              WHERE u.email = 'admin@example.com'
+                AND r.role_name = 'ADMIN';
