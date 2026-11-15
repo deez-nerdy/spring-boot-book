@@ -11,8 +11,4 @@ public interface UserMapper {
     User toUser(UserRegistrationRequestDto userRegistrationRequestDto);
 
     UserResponseDto toUserResponse(User user);
-
-    default String mapRoleToString(Role role) {
-        return role.getRoleName().name();
-    }
 }
