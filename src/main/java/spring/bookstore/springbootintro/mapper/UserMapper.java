@@ -3,7 +3,6 @@ package spring.bookstore.springbootintro.mapper;
 import org.mapstruct.Mapper;
 import spring.bookstore.springbootintro.dto.request.UserRegistrationRequestDto;
 import spring.bookstore.springbootintro.dto.response.UserResponseDto;
-import spring.bookstore.springbootintro.model.Role;
 import spring.bookstore.springbootintro.model.User;
 
 @Mapper(componentModel = "spring")
