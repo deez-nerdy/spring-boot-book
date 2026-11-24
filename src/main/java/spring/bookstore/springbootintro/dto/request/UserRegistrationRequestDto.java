@@ -7,8 +7,11 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import spring.bookstore.springbootintro.config.validation.FieldMatch;
 
-@FieldMatch(first = "password", second = "repeatPassword",
-        message = "password are not equals")
+@FieldMatch(
+        first = "password",
+        second = "repeatPassword",
+        message = "password are not equals"
+)
 @Getter
 @Setter
 public class UserRegistrationRequestDto {
